@@ -1,2 +1,2 @@
 # website
-Everything related to http://eka.to and http://eka.foundation live here. 
+Everything related to <a href="http://eka.to">Eka Foundation</a> lives here.
