@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Eka Foundation</title>
+
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- CSS for modal -->
+		<link rel="stylesheet" href="css/tingle.css">
+
+		<!-- custom css -->
+		<style type="text/css">
+			.tingle-modal.tingle-modal--large .tingle-modal-box {
+			  width: 80%;
+			  height: 80%;
+			  overflow-y: scroll;
+			}
+
+			.column-left {
+			  float: left;
+			  width:25%;
+			}
+
+			.column-right {
+			  float:left;
+			  width: 75%;
+			}
+
+			.row:after {
+			  content: "";
+			  display: table;
+			  clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-state="static">
+					<section data-background="images/first.jpg">
+						<h3><span>Unlocking the human future of the internet</span></h3>
+						<a id="story-1" href="#">READ FULL STORY</a>
+					</section>
+					<section data-background="images/second.jpg">
+						<h3><span>equality through decentralized technology</span></h3>
+						<a id="story-2" href="#">READ FULL STORY</a>
+					</section>
+					<section data-background="images/third.jpg">
+						<h3><span>discovery and learning as a creative process</span></h3>
+						<a id="story-3" href="#">READ FULL STORY</a>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.min.js"></script>
+		<script src="js/tingle.min.js"></script>
+
+		<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+
+		<script>
+			Reveal.initialize({
+				// custom settings
+
+				// Enable slide navigation via mouse wheel
+				mouseWheel: true,
+				// hide control icons
+				controls: false,
+				// Remember slide
+				history: true,
+			});
+
+			$(document).ready(function(){
+				// instanciate new modal
+				var modal = new tingle.modal({
+			    footer: false,
+			    stickyFooter: false,
+			    closeMethods: ['overlay', 'button'],
+			    closeLabel: "",
+			    cssClass: ['tingle-modal--large'],
+			    onOpen: function() {
+			        console.log('modal open');
+			    },
+			    onClose: function() {
+			        console.log('modal closed');
+			    },
+				});
+
+				// READ FULL STORY link handler
+				$('#story-1').click(function(e) {
+					e.preventDefault();
+					openModal('stories/story-1.html')
+				});
+
+				$('#story-2').click(function(e) {
+					e.preventDefault();
+					openModal('stories/story-2.html')
+				});
+
+				$('#story-3').click(function(e) {
+					e.preventDefault();
+					openModal('stories/story-3.html')
+				});
+
+				function openModal(path) {
+					$.ajax(path, {
+						success: function(resp) {
+							modal.setContent(resp)
+							modal.open()
+						}
+					})
+				}
+			});
+		</script>
+	</body>
+</html>
